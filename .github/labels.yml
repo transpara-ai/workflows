@@ -1,0 +1,27 @@
+- name: workflow
+  color: "1d76db"
+  description: A reusable end-to-end agent runbook.
+
+- name: adapter
+  color: "5319e7"
+  description: Install or compatibility work for a specific coding agent.
+
+- name: docs
+  color: "0075ca"
+  description: README, installation, examples, or explanatory documentation.
+
+- name: eval
+  color: "fbca04"
+  description: Tests, examples, or comparisons that measure workflow quality.
+
+- name: design
+  color: "c2e0c6"
+  description: Conceptual changes to workflow structure, scope, or naming.
+
+- name: good first workflow
+  color: "7057ff"
+  description: A small, well-scoped workflow contribution.
+
+- name: needs-agent-check
+  color: "d93f0b"
+  description: Needs verification against a specific agent implementation.

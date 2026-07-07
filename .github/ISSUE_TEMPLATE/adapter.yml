@@ -1,0 +1,29 @@
+name: Agent adapter
+description: Request install or compatibility guidance for a coding agent.
+title: "[adapter] "
+labels:
+  - adapter
+  - needs-agent-check
+body:
+  - type: input
+    id: agent
+    attributes:
+      label: Agent
+      description: Which coding agent or IDE?
+      placeholder: Claude Code, Codex, Neo, Cursor, Aider
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should installation or invocation look like?
+    validations:
+      required: true
+  - type: textarea
+    id: docs
+    attributes:
+      label: Relevant docs
+      description: Link primary docs if you have them.
+    validations:
+      required: false

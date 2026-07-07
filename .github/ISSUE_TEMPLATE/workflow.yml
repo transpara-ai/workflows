@@ -1,0 +1,30 @@
+name: Workflow
+description: Propose or improve an agent workflow.
+title: "[workflow] "
+labels:
+  - workflow
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What recurring agent job should this workflow handle?
+    validations:
+      required: true
+  - type: textarea
+    id: process
+    attributes:
+      label: Expected process
+      description: What steps, gates, evidence, or stop conditions matter?
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - New workflow
+        - Improve existing workflow
+        - Split or rename workflow
+    validations:
+      required: true
