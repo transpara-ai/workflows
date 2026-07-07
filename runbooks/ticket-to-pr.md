@@ -6,6 +6,9 @@ argument-hint: "<ticket URL, issue number, or task description>"
 
 # Ticket To PR
 
+Input: one scoped ticket, issue, bug report, or task description.
+Output: one high quality pull request, or a clear blocker if a PR cannot be produced safely.
+
 Use this workflow when the user wants a scoped change implemented and, when asked, published as a pull request.
 
 Task:

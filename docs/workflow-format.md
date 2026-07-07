@@ -1,6 +1,13 @@
 # Workflow Format
 
-A workflow is a runbook for a recurring agent job.
+A workflow is a runbook that turns a clear input into a valuable output.
+
+Examples:
+
+- ticket to high quality PR
+- milestone to completed PRs
+
+If the file only teaches the agent to perform one step well, it is probably a skill.
 
 It should be usable as:
 
@@ -32,6 +39,9 @@ Use a guide structure, not a checklist of metadata sections.
 ````md
 # Name
 
+Input: ...
+Output: ...
+
 Use this workflow when...
 
 Task:
@@ -58,6 +68,7 @@ Explain the next action in plain language.
 ## Writing Rules
 
 - Prefer verbs over vague guidance.
+- State the input and output near the top.
 - Write the workflow as a step-by-step guide.
 - Avoid making the whole file a bullet list.
 - Make stop conditions concrete.

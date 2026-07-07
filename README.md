@@ -4,12 +4,12 @@ Reusable runbooks for professional software development with coding agents.
 
 Most agent customization today is framed as skills.
 Skills are useful, but they are usually about doing one thing well.
-This repository is about the larger unit of work: the repeatable flow from trigger to evidence.
+This repository is about the larger unit of work: the repeatable transformation from input to output.
 
 ```text
 Rules     = constraints that always apply
 Skills    = reusable capabilities
-Workflows = end-to-end runbooks for recurring jobs
+Workflows = input-to-output runbooks for recurring jobs
 ```
 
 ## Why This Exists
@@ -17,23 +17,23 @@ Workflows = end-to-end runbooks for recurring jobs
 Coding agents are getting better at individual tasks, but real engineering work still fails in boring places.
 Agents skip setup, forget tests, review their own changes lightly, leave branches dirty, or need the same process explained again and again.
 
-Workflows make that process explicit.
+Workflows make that transformation explicit.
 
 A workflow says:
 
-- when to use it
-- what inputs it needs
-- what steps to follow
-- what checks prove the work is done
-- when to stop
-- what evidence to report
+- what input it starts from
+- what output it must produce
+- what steps move the work forward
+- what checks prove the output is high quality
+- when to stop or ask for help
+- what evidence to report at the end
 
 That is closer to an engineering runbook than a prompt snippet.
 
 ## Workflows vs Skills
 
 Skills teach an agent how to do something well.
-Workflows tell an agent how to run a whole job well.
+Workflows turn one professional input into one professional output.
 
 Examples:
 
@@ -41,25 +41,24 @@ Examples:
 | --- | --- | --- |
 | Skill | Review a diff for correctness | One capability |
 | Skill | Verify a UI with a browser | One capability |
-| Workflow | Take a ticket from idea to PR | Full job |
-| Workflow | Fix failing CI | Full job |
+| Workflow | Ticket to high quality PR | Full transformation |
+| Workflow | Milestone to completed PRs | Full transformation |
 
 The clean model is that workflows can call skills.
 A `ticket-to-pr` workflow may use a review skill, a browser verification skill, and a commit skill.
-The workflow owns the sequence, gates, and final evidence.
+The workflow owns the input, output, sequence, gates, and final evidence.
 
 ## Included Workflows
 
-V1 starts with three workflows so the style can get sharp before the catalog grows.
+V1 starts with two workflows so the core idea stays sharp.
 
 | Workflow | Use when |
 | --- | --- |
-| [`ticket-to-pr`](runbooks/ticket-to-pr.md) | Implementing a scoped feature, bug fix, or ticket |
-| [`review-change`](runbooks/review-change.md) | Reviewing a diff, branch, or PR without taking over implementation |
-| [`fix-ci`](runbooks/fix-ci.md) | A test, build, lint, or CI check is failing |
+| [`ticket-to-pr`](runbooks/ticket-to-pr.md) | Turn one scoped ticket into a high quality PR |
+| [`milestone`](runbooks/milestone.md) | Work through every ticket in a milestone using an explicit goal |
 
 Each workflow should read like a step-by-step guide.
-It should tell the agent what to do next, when to stop, and what evidence to report.
+It should tell the agent what input it has, what output it owes, what to do next, when to stop, and what evidence to report.
 
 ## Install
 

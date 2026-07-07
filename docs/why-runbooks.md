@@ -14,7 +14,7 @@ Here is how to do this capability well.
 A runbook says:
 
 ```text
-When this situation happens, run this process from start to finish.
+Turn this input into this output through a known process.
 ```
 
 For coding agents, that distinction matters.
@@ -30,14 +30,12 @@ For coding agents, that distinction matters.
 
 ## Runbooks Are Good For
 
-- ticket to PR
-- fixing CI
-- code review
-- investigation
-- release
-- dependency updates
+- ticket to high quality PR
+- milestone to completed PRs
+- release request to published release
+- incident report to resolved incident
 
-This repo starts with only the first few.
+This repo starts with only the first two.
 The goal is to get the format right before adding a large catalog.
 
 ## Why Not Just Make A Workflow Skill
@@ -49,7 +47,8 @@ The argument for a separate concept is that the promise is different.
 
 A workflow or runbook should own:
 
-- trigger conditions
+- input
+- output
 - prerequisites
 - ordered steps
 - gates
