@@ -6,78 +6,86 @@ argument-hint: "<ticket URL, issue number, or task description>"
 
 # Ticket To PR
 
-Run the ticket-to-PR workflow for:
+Use this workflow when the user wants a scoped change implemented and, when asked, published as a pull request.
 
+Task:
+
+```text
 {{args}}
+```
 
-If your agent uses `$ARGUMENTS` instead of `{{args}}`, treat `$ARGUMENTS` as the task input.
+If your agent uses `$ARGUMENTS`, use that as the task instead.
 
-## Purpose
+## 1. Start With The Local Rules
 
-Turn a scoped feature, bug fix, or engineering task into a reviewed, tested pull request.
+Before touching files, read the project guidance.
+Look for files such as `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, the README, and any developer docs that clearly apply to the task.
 
-## Use When
+Use those files to learn the repo's commands, style, generated files, and safety rules.
+If the project says generated files must come from a generator, edit the generator rather than the generated output.
 
-- The user asks to implement a feature or bug fix.
-- The user provides an issue, ticket, or clear task description.
-- The expected output is code plus a branch, commit, or PR.
+## 2. Check The Starting State
 
-## Inputs
+Run `git status --short`.
+If there are existing changes, decide whether they are part of the user's task.
 
-- Task description, issue, or ticket URL.
-- Target branch, default `main`.
-- Any requested branch name, commit behavior, or PR behavior.
+Stop if you need to edit a file that already has unrelated user changes.
+Ask the user how to proceed instead of overwriting or cleaning up their work.
 
-## Guardrails
+If the tree is clean, create a task branch or worktree when that is normal for the environment.
+Use a short, descriptive name.
 
-- Inspect repo instructions before editing.
-- Inspect git status before editing.
-- Do not overwrite unrelated user changes.
-- Do not make broad refactors unless they are required for the task.
-- Do not commit, push, or open a PR unless the user asked for that.
-- If requirements are risky or unclear, stop and ask a focused question.
+## 3. Understand The Change
 
-## Process
+Restate the task in one or two plain sentences.
+Then find the code path that owns the behavior.
 
-1. Read project guidance such as `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, or equivalent.
-2. Inspect the README and developer docs relevant to the task.
-3. Run `git status --short` and note any existing changes.
-4. Create a clean branch or worktree when the environment supports it.
-5. Restate the task in one or two sentences.
-6. Find the smallest set of files needed for the change.
-7. Implement the change.
-8. Add or update tests when the behavior changed.
-9. Run the narrowest useful checks first.
-10. Run the broader repo checks expected before PR.
-11. Review the final diff for correctness, security, contracts, and test gaps.
-12. Fix blocking review findings.
-13. Commit only the intended files if the user asked for a commit.
-14. Push and open a PR only if the user asked for a PR.
+Read before editing.
+Look at nearby tests, callers, docs, configuration, and prior patterns.
+Do not start with a broad refactor.
 
-## Required Evidence
+If the task is ambiguous in a way that could change the product behavior, ask one focused question.
+If the ambiguity is small, make a conservative assumption and mention it later.
 
-- Starting branch and final branch.
-- Files changed.
-- Tests and checks run, with results.
-- Review result.
-- Commit hash if committed.
-- PR URL if opened.
+## 4. Make The Smallest Complete Change
 
-## Stop If
+Edit only the files needed for the task.
+Match the repo's existing style.
+Add or update tests when behavior changes.
 
-- The working tree has unrelated changes in files you must edit.
-- The task requires credentials, secrets, or production access you do not have.
-- Tests fail and the cause is unknown.
-- The implementation path would be much larger than the task implies.
-- The user asked for a PR but no remote or GitHub access is available.
+Keep notes as you work: what changed, why it changed, and what needs verification.
+If the implementation grows beyond the original scope, stop and explain the new scope before continuing.
+
+## 5. Verify The Work
+
+Run the narrowest useful check first.
+For example, run the specific test package, focused unit test, typecheck, or build that proves the changed behavior.
+
+Then run the broader check expected before a PR.
+Use the repo docs to choose the command.
+
+If a check fails, fix the cause when it is related to your change.
+If the failure is unrelated or unclear, stop and report what failed, what you tried, and why you cannot safely continue.
+
+## 6. Review Your Own Diff
+
+Inspect `git diff`.
+Review the change as if another developer wrote it.
+
+Look for wrong behavior, broken contracts, missing error handling, unsafe data handling, missing tests, and accidental unrelated edits.
+Fix blocking issues before moving on.
+Leave nits alone unless they affect clarity or correctness.
+
+## 7. Commit And Publish Only When Asked
+
+If the user asked for a commit, stage only the files that belong to this task.
+Write one clear commit message.
+
+If the user asked for a push or pull request, push the branch and open the PR after the commit.
+Use the PR body to explain what changed, why it changed, and how it was checked.
+
+Do not tag, release, deploy, or publish packages from this workflow.
 
 ## Final Report
 
-Return:
-
-- what changed
-- where it changed
-- checks run
-- review result
-- branch, commit, and PR details when available
-- remaining risks or follow-up work
+End with a short report that includes the changed files, checks run, self-review result, branch name, commit hash if any, PR URL if any, and remaining risk.

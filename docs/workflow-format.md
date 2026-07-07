@@ -27,38 +27,39 @@ The `argument-hint` should show the minimum useful input.
 
 ## Body
 
-Use this structure:
+Use a guide structure, not a checklist of metadata sections.
 
-```md
+````md
 # Name
 
-Run the workflow for:
+Use this workflow when...
 
+Task:
+
+```text
 {{args}}
+```
 
-If your agent uses `$ARGUMENTS` instead of `{{args}}`, treat `$ARGUMENTS` as the task input.
+If your agent uses `$ARGUMENTS`, use that as the task instead.
 
-## Purpose
+## 1. Start With...
 
-## Use When
+Explain what the agent should do first and what decision it should make.
 
-## Inputs
+## 2. Do The Next Thing
 
-## Guardrails
+Explain the next action in plain language.
 
-## Process
-
-## Required Evidence
-
-## Stop If
+## 3. Prove The Result
 
 ## Final Report
-```
+````
 
 ## Writing Rules
 
 - Prefer verbs over vague guidance.
-- Use ordered steps for the main process.
+- Write the workflow as a step-by-step guide.
+- Avoid making the whole file a bullet list.
 - Make stop conditions concrete.
 - Require evidence, not confidence.
 - Keep implementation-specific commands out unless they are broadly expected.

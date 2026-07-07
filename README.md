@@ -43,7 +43,6 @@ Examples:
 | Skill | Verify a UI with a browser | One capability |
 | Workflow | Take a ticket from idea to PR | Full job |
 | Workflow | Fix failing CI | Full job |
-| Workflow | Cut a release | Full job |
 
 The clean model is that workflows can call skills.
 A `ticket-to-pr` workflow may use a review skill, a browser verification skill, and a commit skill.
@@ -51,23 +50,16 @@ The workflow owns the sequence, gates, and final evidence.
 
 ## Included Workflows
 
+V1 starts with three workflows so the style can get sharp before the catalog grows.
+
 | Workflow | Use when |
 | --- | --- |
 | [`ticket-to-pr`](runbooks/ticket-to-pr.md) | Implementing a scoped feature, bug fix, or ticket |
 | [`review-change`](runbooks/review-change.md) | Reviewing a diff, branch, or PR without taking over implementation |
 | [`fix-ci`](runbooks/fix-ci.md) | A test, build, lint, or CI check is failing |
-| [`investigate`](runbooks/investigate.md) | The problem is unclear and the right output is diagnosis |
-| [`release`](runbooks/release.md) | Preparing or publishing a software release |
 
-Each workflow uses the same shape:
-
-- Purpose
-- Use when
-- Inputs
-- Guardrails
-- Process
-- Required evidence
-- Final report
+Each workflow should read like a step-by-step guide.
+It should tell the agent what to do next, when to stop, and what evidence to report.
 
 ## Install
 

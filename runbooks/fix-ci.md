@@ -6,70 +6,53 @@ argument-hint: "<failing command, CI URL, PR URL, or failure summary>"
 
 # Fix CI
 
-Run the fix-CI workflow for:
+Use this workflow when a build, test, lint, typecheck, or CI job is failing.
 
+Failure:
+
+```text
 {{args}}
+```
 
-If your agent uses `$ARGUMENTS` instead of `{{args}}`, treat `$ARGUMENTS` as the failure input.
+If your agent uses `$ARGUMENTS`, use that as the failure input instead.
 
-## Purpose
+## 1. Get The Real Failure
 
-Turn a failing automated check into a small, verified fix.
+Start with the failing command, CI URL, log excerpt, or PR check.
+Find the first meaningful error.
 
-## Use When
+Do not stop at the final exit code if an earlier error explains the failure.
+If logs are missing, ask for them or use the available CI tooling to fetch them.
 
-- CI is red.
-- A test, build, typecheck, lint, or formatting check fails.
-- The user asks why a check is failing.
+Stop if the failure depends on secrets, production systems, or credentials you cannot access.
 
-## Inputs
+## 2. Reproduce Before Editing
 
-- CI URL, failing command, log excerpt, or failure summary.
-- Target branch or PR if relevant.
-- Expected behavior if the failure is a test regression.
+Run the failing command locally when practical.
+If local reproduction is impossible, explain why and work from the CI evidence.
 
-## Guardrails
+Once you reproduce or understand the failure, state the likely root cause in one sentence.
+Then inspect the code, tests, config, or recent changes that connect to that cause.
 
-- Reproduce the failure before changing code when practical.
-- Fix the cause, not just the symptom.
-- Do not weaken tests unless the test is clearly wrong.
-- Do not silence lint or type errors without explaining why.
-- Keep the patch focused on the failing check.
+## 3. Fix The Cause
 
-## Process
+Make the smallest change that addresses the root cause.
+Do not weaken tests just to make CI pass unless the test is clearly wrong and you can explain why.
 
-1. Gather the failing command, log, or CI job output.
-2. Identify the first meaningful failure, not only the final exit code.
-3. Reproduce the failure locally when possible.
-4. Inspect the relevant code, tests, and recent changes.
-5. State the suspected root cause.
-6. Make the smallest fix.
-7. Rerun the exact failing command.
-8. Run nearby checks that could catch related regressions.
-9. Review the diff for accidental broad changes.
-10. Report what failed, why, and how it was verified.
+Do not hide lint, type, or build errors with broad ignores.
+If an ignore or skip is truly needed, document the reason in the code or final report.
 
-## Required Evidence
+## 4. Prove The Fix
 
-- Failing command or CI job.
-- Root cause.
-- Files changed.
-- Exact checks rerun.
-- Result after the fix.
+Rerun the exact failing command.
+Then run the nearest broader check that could catch related regressions.
 
-## Stop If
+If the failure is flaky, run the check enough times to build confidence or report that it remains a flake.
+Do not claim the fix is proven if the same check still fails.
 
-- Logs or failure details are unavailable.
-- The failure depends on credentials or services you cannot access.
-- The failure is flaky and cannot be reproduced or reasoned about.
-- The fix would require changing product behavior outside the task scope.
+Review the diff before finishing.
+Make sure the patch is focused on the CI failure and did not include unrelated cleanup.
 
 ## Final Report
 
-Return:
-
-- failure summary
-- root cause
-- fix summary
-- checks run before and after
-- remaining CI or flake risk
+End with the failure, root cause, fix, exact checks run, result after the fix, and any remaining CI or flake risk.

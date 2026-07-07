@@ -32,11 +32,13 @@ For coding agents, that distinction matters.
 
 - ticket to PR
 - fixing CI
-- release
-- incident-style debugging
-- dependency updates
-- safe refactors
 - code review
+- investigation
+- release
+- dependency updates
+
+This repo starts with only the first few.
+The goal is to get the format right before adding a large catalog.
 
 ## Why Not Just Make A Workflow Skill
 
@@ -76,7 +78,6 @@ It should reduce:
 - weak self-review
 - missing PR context
 - repeated setup instructions
-- unsafe release actions
 
 It should increase:
 

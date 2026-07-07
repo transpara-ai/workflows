@@ -6,71 +6,59 @@ argument-hint: "<diff, branch, PR URL, or review focus>"
 
 # Review Change
 
-Run the review workflow for:
+Use this workflow when the user asks for a review and does not want you to take over implementation.
 
+Review target:
+
+```text
 {{args}}
+```
 
-If your agent uses `$ARGUMENTS` instead of `{{args}}`, treat `$ARGUMENTS` as the review target.
+If your agent uses `$ARGUMENTS`, use that as the review target instead.
 
-## Purpose
+## 1. Find The Exact Change
 
-Find correctness, security, contract, and test risks in a proposed change.
+Start from the actual diff, branch, or PR.
+If the user did not name a target, review the current uncommitted and staged changes.
 
-## Use When
+Do not review from memory.
+Inspect the changed files and enough surrounding code to understand the behavior.
 
-- The user asks for a review.
-- The user wants confidence before committing, pushing, or merging.
-- The user provides a PR, branch, staged diff, or uncommitted diff.
+Stop if the review target cannot be found or is too large to review responsibly in one pass.
+Ask the user to narrow the scope.
 
-## Inputs
+## 2. Understand The Intent
 
-- Review target, default current diff.
-- Review focus, if provided.
-- Base branch, if reviewing a branch or PR.
+Infer what the change is trying to do from the ticket, PR body, commit message, tests, or changed code.
+If the intent is unclear, say what you are assuming before judging the code.
 
-## Guardrails
+Look at callers, configuration, data flow, and tests when they are relevant.
+A review that ignores the surrounding contract is only a style pass.
 
-- Default to read-only.
-- Do not edit files unless the user explicitly asks for fixes.
-- Review from actual diff and source files, not memory.
-- Prioritize real bugs over style preferences.
-- Do not invent findings to appear useful.
+## 3. Look For Real Risks First
 
-## Process
+Prioritize issues that could break users, data, security, compatibility, or tests.
+Check edge cases, nil or empty values, error handling, permissions, concurrency, and generated files when they apply.
 
-1. Identify the review target.
-2. Inspect git status and the relevant diff.
-3. Read changed files with enough context to understand behavior.
-4. Check affected callers, tests, configuration, and docs.
-5. Look for correctness bugs first.
-6. Check broken contracts, compatibility, security, data loss, and concurrency risks.
-7. Check whether tests would fail without the change.
-8. Separate blocking findings from nits.
-9. If no issues are found, say that clearly and name residual risk.
+Then check whether the tests prove the behavior.
+A test gap is worth reporting when the bug could plausibly return.
 
-## Required Evidence
+Avoid comments that are only personal taste.
+Do not invent findings if the change is sound.
 
-- Review target.
-- Files inspected.
-- Findings with file and line references where possible.
-- Test gaps or residual risk.
+## 4. Report Findings Clearly
 
-## Stop If
+Lead with findings.
+Order them by severity.
+Use file and line references when possible.
 
-- The diff cannot be found.
-- The target branch or PR is unavailable.
-- The change is too large to review responsibly in one pass.
-- Required generated files, schemas, or artifacts are missing.
+For each finding, explain the concrete risk and the smallest likely fix.
+Separate blocking issues from nits.
+
+If there are no findings, say that plainly.
+Name any residual risk, such as checks you did not run or areas you could not inspect.
 
 ## Final Report
 
-Lead with findings, ordered by severity.
-
-Use this shape:
-
-1. Findings
-2. Open questions
-3. Test gaps
-4. Short summary
-
-If there are no findings, say so plainly.
+Return findings first, then open questions, test gaps, and a short summary.
+Do not edit files unless the user explicitly asks for fixes.

@@ -9,16 +9,8 @@ Keep contributions small, clear, and easy to adapt.
 
 Add new canonical workflows to `runbooks/`.
 
-A workflow should include:
-
-- purpose
-- use when
-- inputs
-- guardrails
-- process
-- required evidence
-- stop conditions
-- final report
+A workflow should read like a step-by-step guide.
+It should tell the agent what to do first, what decision to make next, when to stop, and what evidence to report.
 
 Good workflows are specific enough to change agent behavior, but not so specific that they only work in one codebase.
 
