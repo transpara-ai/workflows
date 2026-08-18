@@ -188,4 +188,3 @@ if __name__ == "__main__":
         raise SystemExit(main())
     except VerificationError as exc:
         raise SystemExit(f"TLC 4.6 public control-plane verification failed: {exc}") from exc
-
