@@ -1,0 +1,36 @@
+{
+  "authority_granted": false,
+  "gce": {
+    "blob": "8bb8b611a57517866e499969dee3490becac8e49",
+    "id": "GCE-TLC46-EVIDENCE-TELEMETRY-001",
+    "sha256": "25070b3bc96dc78f47aad37c03686ff9958b1bf5d68b40f4865013a4ad5e0a22",
+    "version": "0.3.0"
+  },
+  "lifecycle_credit": false,
+  "external_lifecycle": {
+    "canonical_promotion_receipt_sha256": "a20ea7402ea3725bd58ec5af2f6dcfe64f67b0f6cd1de10205fc5a7207f0a388",
+    "central_activation_active": false,
+    "convergence_receipt_sha256": "a6ae6fc315739f09229496e18f26ff32d56dd0dc047d8c6ea914a8ad48fd7d04",
+    "installation_receipt_sha256": "07311327ce685aca031be07e4e01fc2cf7b2696a9f73cc82fa37e87083757fa6",
+    "organization_distribution_complete": false,
+    "package_merge_commit": "2160969055499a3a26443dff62470ccce1c4641d"
+  },
+  "package": {
+    "external_canonical": true,
+    "installed_non_enforcing": true,
+    "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
+    "provenance_sha256": "c91e3a68efd2a62f1029a7aebd868f9554512d12660fdbc4e3acf3e0ca5986d9",
+    "reviewed_head": "907b1377c2ddf93053d896c99d7899d864f365c2",
+    "source_commit": "5722077d2653d2f439602ec8a8cb7ac2458fb32f",
+    "version": "0.19.0"
+  },
+  "policy": {
+    "blob": "b0f89a3caf26d956a8e9c82a84fc8c21c303eb1c",
+    "id": "DF-V4.0-CFAR-CFADA-DEV-ARC-GATE-STANDARD",
+    "sha256": "e884228242cfac5e8e4f019059962512fa4eb1012044a6a13ecdaecc10e37b89",
+    "version": "4.6.0"
+  },
+  "schema_version": "transpara.tlc.public-control-source.v1",
+  "source_repository": "transpara-ai/platform",
+  "status": "candidate_non_credit_public_telemetry"
+}

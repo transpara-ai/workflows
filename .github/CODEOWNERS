@@ -1,3 +1,8 @@
 # TLC 4.5 governance ownership
 /.governance/tlc/ @MichaelSaucier
 /.github/workflows/tlc-4.5.yml @MichaelSaucier
+/.github/actions/tlc-4.6-public/ @MichaelSaucier
+/.github/workflows/tlc-4.6-public-reusable.yml @MichaelSaucier
+/tlc/ @MichaelSaucier
+/scripts/verify_tlc46_public_control_plane.py @MichaelSaucier
+/tests/test_tlc46_public_control_plane.py @MichaelSaucier
