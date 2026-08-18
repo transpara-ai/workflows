@@ -18,8 +18,6 @@ jobs:
   tlc-4-6-public:
     uses: transpara-ai/workflows/.github/workflows/tlc-4.6-public-reusable.yml@REVIEWED_40_HEX_COMMIT
     with:
-      repository: ${{ github.repository }}
-      repository_id: ${{ github.event.repository.id }}
       pr_number: ${{ github.event.pull_request.number }}
       base_sha: ${{ github.event.pull_request.base.sha }}
       head_sha: ${{ github.event.pull_request.head.sha }}
@@ -28,4 +26,3 @@ jobs:
 The example token is a marker, not a mutable ref. Replace it only with the
 exact reviewed default-branch commit after this release receives separate
 Tier 3 Human approval and merges.
-

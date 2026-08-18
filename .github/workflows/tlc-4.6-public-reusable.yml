@@ -3,14 +3,6 @@ name: TLC 4.6 public audit telemetry
 on:
   workflow_call:
     inputs:
-      repository:
-        description: Exact public caller repository in owner/name form.
-        required: true
-        type: string
-      repository_id:
-        description: Immutable GitHub repository id for the public caller.
-        required: true
-        type: number
       pr_number:
         description: Live pull-request number.
         required: true
@@ -41,8 +33,8 @@ jobs:
         uses: transpara-ai/workflows/.github/actions/tlc-4.6-public@0ec4b60385bd785c4a902006d554cacbc470419b
         with:
           github-token: ${{ github.token }}
-          repository: ${{ inputs.repository }}
-          repository-id: ${{ inputs.repository_id }}
+          repository: ${{ github.repository }}
+          repository-id: ${{ github.event.repository.id }}
           pr-number: ${{ inputs.pr_number }}
           base-sha: ${{ inputs.base_sha }}
           head-sha: ${{ inputs.head_sha }}
