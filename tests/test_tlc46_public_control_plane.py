@@ -86,13 +86,15 @@ class PublicControlPlaneTests(unittest.TestCase):
         self.assertFalse(result["authority_granted"])
         self.assertFalse(result["lifecycle_credit"])
         self.assertFalse(result["signed_receipt"])
-        self.assertEqual(result["package"]["reviewed_head"], "907b1377c2ddf93053d896c99d7899d864f365c2")
+        self.assertEqual(result["package"]["reviewed_head"], "b3d40ff35603ba96632602e8300c460d7d2f83ca")
         self.assertEqual(
             result["package"]["provenance_sha256"],
-            "c91e3a68efd2a62f1029a7aebd868f9554512d12660fdbc4e3acf3e0ca5986d9",
+            "3feb22352558c25a902a50523788b3aaad742cc999d7b00170f592689b3cb016",
         )
         self.assertTrue(result["package"]["external_canonical"])
         self.assertTrue(result["package"]["installed_non_enforcing"])
+        self.assertTrue(runner.EXTERNAL_LIFECYCLE["organization_distribution_complete"])
+        self.assertTrue(runner.EXTERNAL_LIFECYCLE["central_activation_active"])
         self.assertEqual(runner.stable_json_bytes(result), runner.stable_json_bytes(self.evaluate()))
 
     def test_repository_metadata_route_is_valid_and_path_escape_is_rejected(self):

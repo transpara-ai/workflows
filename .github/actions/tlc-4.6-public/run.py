@@ -29,21 +29,23 @@ SHA1 = re.compile(r"^[0-9a-f]{40}$")
 REPOSITORY = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 MAX_CHANGED_FILES = 3000
 PACKAGE_IDENTITY = {
-    "version": "0.19.0",
-    "reviewed_head": "907b1377c2ddf93053d896c99d7899d864f365c2",
-    "source_commit": "5722077d2653d2f439602ec8a8cb7ac2458fb32f",
-    "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
-    "provenance_sha256": "c91e3a68efd2a62f1029a7aebd868f9554512d12660fdbc4e3acf3e0ca5986d9",
+    "version": "0.20.0",
+    "reviewed_head": "b3d40ff35603ba96632602e8300c460d7d2f83ca",
+    "source_commit": "a18b79188d5ff9cb4c34043b77497b7cfb6c1423",
+    "manifest_blob": "397ca17afde0327a63af11f9c8667686c3a6c637",
+    "provenance_sha256": "3feb22352558c25a902a50523788b3aaad742cc999d7b00170f592689b3cb016",
     "external_canonical": True,
     "installed_non_enforcing": True,
 }
 EXTERNAL_LIFECYCLE = {
-    "package_merge_commit": "2160969055499a3a26443dff62470ccce1c4641d",
-    "installation_receipt_sha256": "07311327ce685aca031be07e4e01fc2cf7b2696a9f73cc82fa37e87083757fa6",
-    "convergence_receipt_sha256": "a6ae6fc315739f09229496e18f26ff32d56dd0dc047d8c6ea914a8ad48fd7d04",
-    "canonical_promotion_receipt_sha256": "a20ea7402ea3725bd58ec5af2f6dcfe64f67b0f6cd1de10205fc5a7207f0a388",
-    "organization_distribution_complete": False,
-    "central_activation_active": False,
+    "package_merge_commit": "570a4c3989745e66479a9afbf854cff8795767b3",
+    "installation_receipt_sha256": "db729c2517c919dc3a676fea637899a32f6021bc3925e4eb4f6e922cd058b997",
+    "convergence_receipt_sha256": "30cc3958f81a090f81f14278b1029e381107afb06dd6dbd908c6f66c2b9bd5ba",
+    "canonical_promotion_receipt_sha256": "30d8200cccf993926ac60b2f3d46286d03124b16f5396b673167218d0cddf874",
+    "organization_distribution_complete": True,
+    "organization_distribution_merge": "58487cb72076a9bd3552d367aefce9328e59da5b",
+    "central_activation_active": True,
+    "central_activation_merge": "b6a8caa67808e0161099fce0d08c35b5ab580a97",
 }
 POLICY_IDENTITY = {
     "id": "DF-V4.0-CFAR-CFADA-DEV-ARC-GATE-STANDARD",
@@ -91,7 +93,7 @@ def source_receipt() -> dict[str, Any]:
         "policy": POLICY_IDENTITY,
         "authority_granted": False,
         "lifecycle_credit": False,
-        "status": "candidate_non_credit_public_telemetry",
+        "status": "canonical_non_credit_public_telemetry",
     }
     for key, wanted in expected.items():
         if value.get(key) != wanted:

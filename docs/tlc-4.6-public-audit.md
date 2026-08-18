@@ -4,7 +4,7 @@ Public repositories cannot call a private reusable workflow. TLC 4.6 therefore
 uses a small public evaluator in this public repository.
 
 The evaluator is bound to exact canonical, installed, non-enforcing package
-0.19.0 and remains audit telemetry only. It uses GitHub read APIs to resolve the
+0.20.0 and remains audit telemetry only. It uses GitHub read APIs to resolve the
 live repository, pull request, base, head, and changed-file list. It does not
 check out, import, build, install, or execute pull-request code. It has no
 secret, status write, OIDC, attestation, settings, deployment, or runtime
