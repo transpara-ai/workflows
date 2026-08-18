@@ -69,7 +69,7 @@ class PublicControlPlaneTests(unittest.TestCase):
             observed_at="2026-08-18T15:00:00Z",
             environment={
                 "GITHUB_ACTION_REPOSITORY": "transpara-ai/workflows",
-                "GITHUB_ACTION_REF": "0ec4b60385bd785c4a902006d554cacbc470419b",
+                "GITHUB_ACTION_REF": "666b1a0a2d31d56327c4c0bfde1604c6da1707fb",
                 "GITHUB_WORKFLOW_REF": "transpara-ai/wiki/.github/workflows/tlc.yml@refs/pull/3/merge",
                 "GITHUB_RUN_ID": "123",
                 "GITHUB_RUN_ATTEMPT": "1",

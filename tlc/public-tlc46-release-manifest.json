@@ -1,5 +1,5 @@
 {
-  "action_commit": "0ec4b60385bd785c4a902006d554cacbc470419b",
+  "action_commit": "666b1a0a2d31d56327c4c0bfde1604c6da1707fb",
   "authority_granted": false,
   "gce": {
     "blob": "8bb8b611a57517866e499969dee3490becac8e49",
@@ -39,12 +39,12 @@
   "reviewed_files": {
     ".github/CODEOWNERS": "cbd5e956a37350e0f5ba93e5bca6724e27bcf92566b5c897e26cfc4a53ee0ce4",
     ".github/actions/tlc-4.6-public/action.yml": "1a5f1e7ead779c5c8792956357410fbc1a31b04579ea628adf6b3d55fd36ff16",
-    ".github/actions/tlc-4.6-public/run.py": "8c74c8421ae77721b091c28212133217c688216d8f3175516102a4eb49fac193",
-    ".github/workflows/tlc-4.6-public-reusable.yml": "3c6dd9e5cdbd403926ca263cba6c22bcdfd8839c9e8450c66a51660d0bf494b5",
+    ".github/actions/tlc-4.6-public/run.py": "314fa26bbf108f9a1d6a00a481f0a3b8e33bf80b269af876f650e30b6b642c52",
+    ".github/workflows/tlc-4.6-public-reusable.yml": "53a87ed0ca23af1f48949fd374d1c627eb0ee08fb78b054d796462e0c1d8f2b1",
     "Makefile": "012155bb8c19d39ab19240e239498e6ba0e53ea2f6cdad06013dbf4dc8cbc913",
     "docs/tlc-4.6-public-audit.md": "e957ac17911e58f3f14c6db8f1aafba44ce62e1d037f6c83f597384344d5716a",
     "scripts/verify_tlc46_public_control_plane.py": "f555dbefce426e7365dbba2fb97a337886c5ba246e652dadb6592c91ef088321",
-    "tests/test_tlc46_public_control_plane.py": "ed6d5708e14edd7c12278108ce89a99c255eb283bbd726b43b6c38448a8c4a4b",
+    "tests/test_tlc46_public_control_plane.py": "befe84b70ad92a7c0df4e1cf6ba44e5247c7185e2874143cdfedffdf0a96724a",
     "tlc/public-tlc46-source.json": "be558c9c4e4ff1f8d1ead1a2340aaed1405bcc4c3d3cf6223a4208b8d51e6663"
   },
   "schema_version": "transpara.tlc.public-release-manifest.v1",
