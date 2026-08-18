@@ -1,5 +1,5 @@
 {
-  "action_commit": "666b1a0a2d31d56327c4c0bfde1604c6da1707fb",
+  "action_commit": "041ddf5ee9e20bd11847ed829ca9dacd880ef80e",
   "authority_granted": false,
   "gce": {
     "blob": "8bb8b611a57517866e499969dee3490becac8e49",
@@ -16,10 +16,12 @@
   ],
   "organization_inventory_included": false,
   "package": {
+    "external_canonical": true,
+    "installed_non_enforcing": true,
     "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
-    "provenance_sha256": "09093935509ba2dc8f54151dc1fe2a7da3904b4d5e686ca73e3aaaecb955ae9f",
-    "reviewed_head": "7397a727d563957ff5701887abd842518b58dc72",
-    "source_commit": "146c1899edda6908f5e819061d9f8f0f850c7819",
+    "provenance_sha256": "c91e3a68efd2a62f1029a7aebd868f9554512d12660fdbc4e3acf3e0ca5986d9",
+    "reviewed_head": "907b1377c2ddf93053d896c99d7899d864f365c2",
+    "source_commit": "5722077d2653d2f439602ec8a8cb7ac2458fb32f",
     "version": "0.19.0"
   },
   "private_evidence_included": false,
@@ -39,13 +41,13 @@
   "reviewed_files": {
     ".github/CODEOWNERS": "cbd5e956a37350e0f5ba93e5bca6724e27bcf92566b5c897e26cfc4a53ee0ce4",
     ".github/actions/tlc-4.6-public/action.yml": "1a5f1e7ead779c5c8792956357410fbc1a31b04579ea628adf6b3d55fd36ff16",
-    ".github/actions/tlc-4.6-public/run.py": "314fa26bbf108f9a1d6a00a481f0a3b8e33bf80b269af876f650e30b6b642c52",
-    ".github/workflows/tlc-4.6-public-reusable.yml": "53a87ed0ca23af1f48949fd374d1c627eb0ee08fb78b054d796462e0c1d8f2b1",
+    ".github/actions/tlc-4.6-public/run.py": "9bec06861f719f280bc2da69cd58075c32b22f3d948abc5acbdcff6b55a4f4e3",
+    ".github/workflows/tlc-4.6-public-reusable.yml": "0d5ac12d1dbc883f167834dee91a0f7c2a1cbf5653543ae6dec91d1f29aa35a8",
     "Makefile": "012155bb8c19d39ab19240e239498e6ba0e53ea2f6cdad06013dbf4dc8cbc913",
-    "docs/tlc-4.6-public-audit.md": "e957ac17911e58f3f14c6db8f1aafba44ce62e1d037f6c83f597384344d5716a",
+    "docs/tlc-4.6-public-audit.md": "8acdb890ef70548c88746f6605c7d11dca39f6770a96d2d216d40547f22f9d41",
     "scripts/verify_tlc46_public_control_plane.py": "f555dbefce426e7365dbba2fb97a337886c5ba246e652dadb6592c91ef088321",
-    "tests/test_tlc46_public_control_plane.py": "befe84b70ad92a7c0df4e1cf6ba44e5247c7185e2874143cdfedffdf0a96724a",
-    "tlc/public-tlc46-source.json": "be558c9c4e4ff1f8d1ead1a2340aaed1405bcc4c3d3cf6223a4208b8d51e6663"
+    "tests/test_tlc46_public_control_plane.py": "7e58d35758a0ef4c2351a3d62c319e3a61cc2b1e6895a588c70387a9887f26a8",
+    "tlc/public-tlc46-source.json": "1cbf8a773b1c2b3a3218a4692e90febd828927facf1a602c6318dbbb6b950b1b"
   },
   "schema_version": "transpara.tlc.public-release-manifest.v1",
   "status": "candidate_unpublished"
