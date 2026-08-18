@@ -1,0 +1,26 @@
+{
+  "authority_granted": false,
+  "gce": {
+    "blob": "8bb8b611a57517866e499969dee3490becac8e49",
+    "id": "GCE-TLC46-EVIDENCE-TELEMETRY-001",
+    "sha256": "25070b3bc96dc78f47aad37c03686ff9958b1bf5d68b40f4865013a4ad5e0a22",
+    "version": "0.3.0"
+  },
+  "lifecycle_credit": false,
+  "package": {
+    "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
+    "provenance_sha256": "09093935509ba2dc8f54151dc1fe2a7da3904b4d5e686ca73e3aaaecb955ae9f",
+    "reviewed_head": "7397a727d563957ff5701887abd842518b58dc72",
+    "source_commit": "146c1899edda6908f5e819061d9f8f0f850c7819",
+    "version": "0.19.0"
+  },
+  "policy": {
+    "blob": "b0f89a3caf26d956a8e9c82a84fc8c21c303eb1c",
+    "id": "DF-V4.0-CFAR-CFADA-DEV-ARC-GATE-STANDARD",
+    "sha256": "e884228242cfac5e8e4f019059962512fa4eb1012044a6a13ecdaecc10e37b89",
+    "version": "4.6.0"
+  },
+  "schema_version": "transpara.tlc.public-control-source.v1",
+  "source_repository": "transpara-ai/platform",
+  "status": "candidate_non_credit_public_telemetry"
+}
