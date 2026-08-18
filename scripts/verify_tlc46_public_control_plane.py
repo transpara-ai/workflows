@@ -14,6 +14,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "tlc/public-tlc46-release-manifest.json"
+SOURCE = ROOT / "tlc/public-tlc46-source.json"
 WORKFLOW = ROOT / ".github/workflows/tlc-4.6-public-reusable.yml"
 ACTION = ROOT / ".github/actions/tlc-4.6-public/action.yml"
 RUNNER = ROOT / ".github/actions/tlc-4.6-public/run.py"
@@ -21,6 +22,7 @@ SHA1 = re.compile(r"^[0-9a-f]{40}$")
 PUBLIC_REUSABLE = re.compile(
     r"^transpara-ai/workflows/\.github/workflows/[A-Za-z0-9_.-]+\.ya?ml@([0-9a-f]{40})$"
 )
+URL_LITERAL = re.compile(r"https://[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]+")
 
 
 class VerificationError(ValueError):
@@ -77,6 +79,24 @@ def changed_paths(base: str) -> list[str]:
     return sorted(line for line in proc.stdout.splitlines() if line)
 
 
+def validate_reviewed_file_sets(manifest: dict[str, Any]) -> tuple[dict[str, str], list[str]]:
+    reviewed = manifest.get("reviewed_files")
+    allowlist = manifest.get("reviewed_change_allowlist")
+    if not isinstance(reviewed, dict):
+        raise VerificationError("reviewed_files_invalid")
+    if not isinstance(allowlist, list) or len(set(allowlist)) != len(allowlist):
+        raise VerificationError("reviewed_change_allowlist_invalid")
+    manifest_relative = str(MANIFEST.relative_to(ROOT))
+    expected_reviewed = set(allowlist) - {manifest_relative}
+    if manifest_relative not in allowlist or set(reviewed) != expected_reviewed:
+        raise VerificationError("reviewed_file_set_mismatch")
+    return reviewed, allowlist
+
+
+def runner_network_endpoints(source: str) -> list[str]:
+    return sorted(set(URL_LITERAL.findall(source)))
+
+
 def verify() -> None:
     manifest = load_object(MANIFEST)
     if manifest.get("schema_version") != "transpara.tlc.public-release-manifest.v1":
@@ -84,9 +104,7 @@ def verify() -> None:
     if manifest.get("status") != "candidate_unpublished" or manifest.get("authority_granted") is not False:
         raise VerificationError("candidate_boundary_invalid")
 
-    reviewed = manifest.get("reviewed_files")
-    if not isinstance(reviewed, dict):
-        raise VerificationError("reviewed_files_invalid")
+    reviewed, allowlist = validate_reviewed_file_sets(manifest)
     for relative, expected in reviewed.items():
         if not isinstance(relative, str) or not isinstance(expected, str):
             raise VerificationError("reviewed_file_row_invalid")
@@ -94,11 +112,14 @@ def verify() -> None:
         if not path.is_file() or sha256(path) != expected:
             raise VerificationError(f"reviewed_file_digest_mismatch:{relative}")
 
-    allowlist = manifest.get("reviewed_change_allowlist")
-    if not isinstance(allowlist, list) or len(set(allowlist)) != len(allowlist):
-        raise VerificationError("reviewed_change_allowlist_invalid")
     if changed_paths(str(manifest.get("review_base"))) != sorted(allowlist):
         raise VerificationError("reviewed_change_allowlist_mismatch")
+
+    source_receipt = load_object(SOURCE)
+    if manifest.get("package") != source_receipt.get("package"):
+        raise VerificationError("release_package_source_mismatch")
+    if manifest.get("gce") != source_receipt.get("gce"):
+        raise VerificationError("release_gce_source_mismatch")
 
     action_commit = str(manifest.get("action_commit"))
     if SHA1.fullmatch(action_commit) is None or action_commit == "0" * 40:
@@ -154,6 +175,8 @@ def verify() -> None:
     forbidden_source = ("os.system(", "eval(", "exec(", "shell=True", "github.com/", "raw.githubusercontent.com")
     if found := [value for value in forbidden_source if value in source]:
         raise VerificationError(f"forbidden_runner_primitive:{found}")
+    if runner_network_endpoints(source) != manifest.get("network_endpoints"):
+        raise VerificationError("runner_network_endpoint_mismatch")
     action = ACTION.read_text(encoding="utf-8")
     if "secrets." in action or "id-token" in action or "attestations" in action:
         raise VerificationError("public_action_permission_or_secret_reference")
@@ -175,6 +198,16 @@ def verify() -> None:
         text = (ROOT / relative).read_text(encoding="utf-8")
         if any(pattern.search(text) for pattern in secret_patterns):
             raise VerificationError(f"sensitive_material_detected:{relative}")
+    history = subprocess.run(
+        ["git", "-C", str(ROOT), "log", "-p", "--format=", f"{manifest['review_base']}..HEAD", "--", *allowlist],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if history.returncode:
+        raise VerificationError(f"review_history_unavailable:{history.stderr.strip()}")
+    if any(pattern.search(history.stdout) for pattern in secret_patterns):
+        raise VerificationError("sensitive_material_detected_in_review_history")
 
 
 def main() -> int:

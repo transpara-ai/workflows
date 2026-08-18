@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -135,6 +136,20 @@ class PublicControlPlaneTests(unittest.TestCase):
 
     def test_release_manifest_and_disclosure_boundary(self):
         verifier.verify()
+
+    def test_release_manifest_requires_every_allowlisted_nonself_file_digest(self):
+        manifest = json.loads((ROOT / "tlc/public-tlc46-release-manifest.json").read_text(encoding="utf-8"))
+        manifest["reviewed_files"].pop(".github/actions/tlc-4.6-public/run.py")
+        with self.assertRaisesRegex(verifier.VerificationError, "reviewed_file_set_mismatch"):
+            verifier.validate_reviewed_file_sets(manifest)
+
+    def test_public_runner_network_endpoint_allowlist_is_exact(self):
+        source = (ROOT / ".github/actions/tlc-4.6-public/run.py").read_text(encoding="utf-8")
+        self.assertEqual(verifier.runner_network_endpoints(source), ["https://api.github.com"])
+        self.assertEqual(
+            verifier.runner_network_endpoints(source + '\nEXTRA = "https://example.invalid"\n'),
+            ["https://api.github.com", "https://example.invalid"],
+        )
 
 
 if __name__ == "__main__":

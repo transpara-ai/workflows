@@ -45,8 +45,8 @@
     ".github/workflows/tlc-4.6-public-reusable.yml": "446c76a959d741225444b231de84f2365b498061f687fcea001a009d52210c01",
     "Makefile": "bf7839384b6e85b500d21d122151d313ec6b521db302febf1b26fa555edfa491",
     "docs/tlc-4.6-public-audit.md": "8acdb890ef70548c88746f6605c7d11dca39f6770a96d2d216d40547f22f9d41",
-    "scripts/verify_tlc46_public_control_plane.py": "6c9183308f4f95ca18d28af786d24aadc67f8b21cc2c2d0a281c5dd54a16e403",
-    "tests/test_tlc46_public_control_plane.py": "7e58d35758a0ef4c2351a3d62c319e3a61cc2b1e6895a588c70387a9887f26a8",
+    "scripts/verify_tlc46_public_control_plane.py": "1ad292992cfd1e88f0cc0ee15b37325516404ca85eb871243ffa3e723178c44d",
+    "tests/test_tlc46_public_control_plane.py": "be60e88d1ff08839d54533d7c6422cd81250360dff57d2f8db9d2965e0a6b316",
     "tlc/public-tlc46-source.json": "1cbf8a773b1c2b3a3218a4692e90febd828927facf1a602c6318dbbb6b950b1b"
   },
   "schema_version": "transpara.tlc.public-release-manifest.v1",
