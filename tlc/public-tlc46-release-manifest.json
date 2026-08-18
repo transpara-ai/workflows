@@ -1,0 +1,52 @@
+{
+  "action_commit": "0ec4b60385bd785c4a902006d554cacbc470419b",
+  "authority_granted": false,
+  "gce": {
+    "blob": "8bb8b611a57517866e499969dee3490becac8e49",
+    "id": "GCE-TLC46-EVIDENCE-TELEMETRY-001",
+    "sha256": "25070b3bc96dc78f47aad37c03686ff9958b1bf5d68b40f4865013a4ad5e0a22",
+    "version": "0.3.0"
+  },
+  "immutable_action_paths": [
+    ".github/actions/tlc-4.6-public",
+    "tlc/public-tlc46-source.json"
+  ],
+  "network_endpoints": [
+    "https://api.github.com"
+  ],
+  "organization_inventory_included": false,
+  "package": {
+    "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
+    "provenance_sha256": "09093935509ba2dc8f54151dc1fe2a7da3904b4d5e686ca73e3aaaecb955ae9f",
+    "reviewed_head": "7397a727d563957ff5701887abd842518b58dc72",
+    "source_commit": "146c1899edda6908f5e819061d9f8f0f850c7819",
+    "version": "0.19.0"
+  },
+  "private_evidence_included": false,
+  "review_base": "4b5be2389ad79380fc158698c7d97b1ec859d328",
+  "reviewed_change_allowlist": [
+    ".github/CODEOWNERS",
+    ".github/actions/tlc-4.6-public/action.yml",
+    ".github/actions/tlc-4.6-public/run.py",
+    ".github/workflows/tlc-4.6-public-reusable.yml",
+    "Makefile",
+    "docs/tlc-4.6-public-audit.md",
+    "scripts/verify_tlc46_public_control_plane.py",
+    "tests/test_tlc46_public_control_plane.py",
+    "tlc/public-tlc46-release-manifest.json",
+    "tlc/public-tlc46-source.json"
+  ],
+  "reviewed_files": {
+    ".github/CODEOWNERS": "cbd5e956a37350e0f5ba93e5bca6724e27bcf92566b5c897e26cfc4a53ee0ce4",
+    ".github/actions/tlc-4.6-public/action.yml": "1a5f1e7ead779c5c8792956357410fbc1a31b04579ea628adf6b3d55fd36ff16",
+    ".github/actions/tlc-4.6-public/run.py": "8c74c8421ae77721b091c28212133217c688216d8f3175516102a4eb49fac193",
+    ".github/workflows/tlc-4.6-public-reusable.yml": "4206dc35f62dff6e4756eb5b50e8edb0fb7204db241c52523ff62655d68bb206",
+    "Makefile": "012155bb8c19d39ab19240e239498e6ba0e53ea2f6cdad06013dbf4dc8cbc913",
+    "docs/tlc-4.6-public-audit.md": "c165d88c2985545f5d417e17f3e431a9d41cd7fac18e33dbd3c76bb48be2bad4",
+    "scripts/verify_tlc46_public_control_plane.py": "f555dbefce426e7365dbba2fb97a337886c5ba246e652dadb6592c91ef088321",
+    "tests/test_tlc46_public_control_plane.py": "ed6d5708e14edd7c12278108ce89a99c255eb283bbd726b43b6c38448a8c4a4b",
+    "tlc/public-tlc46-source.json": "be558c9c4e4ff1f8d1ead1a2340aaed1405bcc4c3d3cf6223a4208b8d51e6663"
+  },
+  "schema_version": "transpara.tlc.public-release-manifest.v1",
+  "status": "candidate_unpublished"
+}
