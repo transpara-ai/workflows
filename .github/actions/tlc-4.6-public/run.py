@@ -96,12 +96,9 @@ class GitHubClient:
         self.opener = opener
 
     def get(self, repository: str, suffix: str) -> Any:
-        if REPOSITORY.fullmatch(repository) is None:
-            raise PublicAuditError("repository_invalid")
-        if not suffix.startswith("/") or ".." in suffix:
-            raise PublicAuditError("github_api_path_invalid")
+        url = repository_api_url(repository, suffix)
         request = urllib.request.Request(
-            f"{API_ORIGIN}/repos/{repository}{suffix}",
+            url,
             headers={
                 "Accept": "application/vnd.github+json",
                 "Authorization": f"Bearer {self.token}",
@@ -116,6 +113,14 @@ class GitHubClient:
             raise PublicAuditError(f"github_api_http:{suffix}:{exc.code}") from exc
         except (urllib.error.URLError, TimeoutError, UnicodeError, json.JSONDecodeError) as exc:
             raise PublicAuditError(f"github_api_failed:{suffix}:{exc}") from exc
+
+
+def repository_api_url(repository: str, suffix: str) -> str:
+    if REPOSITORY.fullmatch(repository) is None:
+        raise PublicAuditError("repository_invalid")
+    if (suffix and not suffix.startswith("/")) or ".." in suffix:
+        raise PublicAuditError("github_api_path_invalid")
+    return f"{API_ORIGIN}/repos/{repository}{suffix}"
 
 
 def exact_public_subject(
@@ -286,4 +291,3 @@ if __name__ == "__main__":
         raise SystemExit(main())
     except PublicAuditError as exc:
         raise SystemExit(f"TLC 4.6 public audit failed closed: {exc}") from exc
-

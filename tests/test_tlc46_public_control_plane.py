@@ -87,6 +87,20 @@ class PublicControlPlaneTests(unittest.TestCase):
         self.assertFalse(result["signed_receipt"])
         self.assertEqual(runner.stable_json_bytes(result), runner.stable_json_bytes(self.evaluate()))
 
+    def test_repository_metadata_route_is_valid_and_path_escape_is_rejected(self):
+        self.assertEqual(
+            runner.repository_api_url("transpara-ai/wiki", ""),
+            "https://api.github.com/repos/transpara-ai/wiki",
+        )
+        self.assertEqual(
+            runner.repository_api_url("transpara-ai/wiki", "/pulls/3"),
+            "https://api.github.com/repos/transpara-ai/wiki/pulls/3",
+        )
+        with self.assertRaisesRegex(runner.PublicAuditError, "github_api_path_invalid"):
+            runner.repository_api_url("transpara-ai/wiki", "pulls/3")
+        with self.assertRaisesRegex(runner.PublicAuditError, "github_api_path_invalid"):
+            runner.repository_api_url("transpara-ai/wiki", "/../private")
+
     def test_private_repository_and_live_identity_drift_fail(self):
         with self.assertRaisesRegex(runner.PublicAuditError, "repository_not_public"):
             self.evaluate(FakeClient(public=False))
