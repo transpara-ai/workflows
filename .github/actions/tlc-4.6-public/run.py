@@ -30,10 +30,20 @@ REPOSITORY = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 MAX_CHANGED_FILES = 3000
 PACKAGE_IDENTITY = {
     "version": "0.19.0",
-    "reviewed_head": "7397a727d563957ff5701887abd842518b58dc72",
-    "source_commit": "146c1899edda6908f5e819061d9f8f0f850c7819",
+    "reviewed_head": "907b1377c2ddf93053d896c99d7899d864f365c2",
+    "source_commit": "5722077d2653d2f439602ec8a8cb7ac2458fb32f",
     "manifest_blob": "50ee9f1c776c8b23dfac88b9239f4e12337e3bf3",
-    "provenance_sha256": "09093935509ba2dc8f54151dc1fe2a7da3904b4d5e686ca73e3aaaecb955ae9f",
+    "provenance_sha256": "c91e3a68efd2a62f1029a7aebd868f9554512d12660fdbc4e3acf3e0ca5986d9",
+    "external_canonical": True,
+    "installed_non_enforcing": True,
+}
+EXTERNAL_LIFECYCLE = {
+    "package_merge_commit": "2160969055499a3a26443dff62470ccce1c4641d",
+    "installation_receipt_sha256": "07311327ce685aca031be07e4e01fc2cf7b2696a9f73cc82fa37e87083757fa6",
+    "convergence_receipt_sha256": "a6ae6fc315739f09229496e18f26ff32d56dd0dc047d8c6ea914a8ad48fd7d04",
+    "canonical_promotion_receipt_sha256": "a20ea7402ea3725bd58ec5af2f6dcfe64f67b0f6cd1de10205fc5a7207f0a388",
+    "organization_distribution_complete": False,
+    "central_activation_active": False,
 }
 POLICY_IDENTITY = {
     "id": "DF-V4.0-CFAR-CFADA-DEV-ARC-GATE-STANDARD",
@@ -77,6 +87,7 @@ def source_receipt() -> dict[str, Any]:
         "schema_version": "transpara.tlc.public-control-source.v1",
         "source_repository": "transpara-ai/platform",
         "package": PACKAGE_IDENTITY,
+        "external_lifecycle": EXTERNAL_LIFECYCLE,
         "policy": POLICY_IDENTITY,
         "authority_granted": False,
         "lifecycle_credit": False,
