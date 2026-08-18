@@ -30,7 +30,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Observe exact caller through GitHub APIs
-        uses: transpara-ai/workflows/.github/actions/tlc-4.6-public@bce8f2a6a14c6faa8a4a01279c092b5b892e4bdc
+        uses: transpara-ai/workflows/.github/actions/tlc-4.6-public@372055c6c63554bf000f9f3c383bf501cc951e3c
         with:
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
